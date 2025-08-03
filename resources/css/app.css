@@ -1,0 +1,213 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ログイン画面の背景画像設定 */
+.login-bg {
+    background-image: url('/images/Gemini_Generated_Image_yb4qfpyb4qfpyb4q.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+}
+
+/* 全画面表示のためのリセット */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow-x: hidden;
+}
+
+.min-h-screen {
+    background-color: transparent !important; /* 強制的に透明に設定 */
+}
+
+/* ダークモードも考慮する場合 */
+.dark .min-h-screen {
+    background-color: transparent !important;
+}
+
+
+.bg-white:not(.dropdown-content){
+    background-color: transparent !important;
+}
+.dark .bg-gray-800:not(.dropdown-content){
+    background-color: transparent !important;
+} 
+
+.dropdown-content {
+    background-color: white !important;
+    border: 1px solid #e5e7eb !important;
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
+    border-radius: 0.375rem !important;
+
+}
+
+.dropdown-content a{
+    color: lightgray !important;
+    background-color: transparent !important;
+    padding: 0.5rem 1 rem !important;
+    display: block !important;
+    font-size: 0.875rem !important;
+    transition: all 0.15s ease-in-out !important;
+}
+
+.dark .dropdown-content {
+    background-color: #1f2937 !important;
+    border-color: #374151 !important;
+}
+
+/* Profile リンクの色 */
+.dropdown-content a[href*="profile"] {
+    color: #111827 !important; /* グレー900（ほぼ黒） */
+}
+
+/* Log Out リンクの色 */
+.dropdown-content a[href*="logout"] {
+    color: #dc2626 !important; /* 赤600 */
+}
+
+/* ホバー時のスタイル */
+.dropdown-content a:hover {
+    background-color: lightgray !important;
+    color: black !important;
+}
+
+/* Log Out リンクのホバー時 */
+.dropdown-content a[href*="logout"]:hover {
+    background-color: mistyrose !important; /* 薄いピンク */
+    color: darkred !important;
+}
+
+/* フォーカス時のスタイル */
+.dropdown-content a:focus {
+    outline: none !important;
+    background-color: gainsboro !important;
+}
+
+/* ダークモード対応 */
+.dark .dropdown-content {
+    background-color: #1f2937 !important;
+    border-color: #374151 !important;
+}
+
+.dark .dropdown-content a {
+    color: #e5e7eb !important;
+}
+
+.dark .dropdown-content a[href*="profile"] {
+    color: #f9fafb !important;
+}
+
+.dark .dropdown-content a[href*="logout"] {
+    color: #f87171 !important; /* 赤400 */
+}
+
+.dark .dropdown-content a:hover {
+    background-color: #374151 !important;
+    color: #ffffff !important;
+}
+
+.dark .dropdown-content a[href*="logout"]:hover {
+    background-color: #450a0a !important; /* 赤950 */
+    color: #fca5a5 !important; /* 赤300 */
+}
+
+#rouletteArea{
+    width: 250px;
+    height: 60px;
+    border: 3px solid transparent;
+    background: linear-gradient(white,white) padding-box,
+                linear-gradient(135deg, #ff9a56, #ff6b6b, #4ecdc4) border-box;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(255, 107, 107, 0.2); 
+    overflow: hidden;
+    margin: 20px auto;
+    position: relative;
+    
+}
+
+#rouletteArea.active{
+    box-shadow: 0 0 20px rgba(78, 205, 196, 0.6),
+                0 8px 25px rgba(255, 107, 107, 0.3);
+    animation: pulseGlow 0.5s ease-in-out infinite alternate;
+}
+
+#rouletteArea ul {
+    display:flex;
+    flex-direction: column;
+    margin:0;
+    padding: 0;
+    list-style: none;
+    position:absolute;
+    top: 0;
+    width: 100%;
+    transition: transform 0.5s ease-out;
+}
+
+@keyframes pulseGlow {
+    from { box-shadow: 0 0 20px rgba(78, 205, 196, 0.6); }
+    to { box-shadow: 0 0 30px rgba(78, 205, 196, 0.8); }
+}
+
+#rouletteArea li {
+    top: 0;
+    height: 60px;                    /* 50px → 60px に合わせて変更 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;                 /* 20px → 18px */
+    font-weight: 600;                /* 追加: フォント太さ */
+    background: linear-gradient(135deg, #f8f9fa, #ffffff);  /* 変更: グラデーション背景 */
+    border-bottom: 1px solid rgba(0,0,0,0.05);  /* 追加: 境界線 */
+    color: #333;                     /* 追加: 文字色 */
+    transition: all 0.2s ease;      /* 追加: トランジション */
+    
+}
+
+
+/* 結果表示のアニメーション */
+@keyframes bounce-in {
+    0% { transform: scale(0.3); opacity: 0; }
+    50% { transform: scale(1.05); }
+    70% { transform: scale(0.9); }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.animate-bounce-in {
+    animation: bounce-in 0.6s ease-out;
+}
+
+#rouletteArea.active ul{
+    animation: rouletteAnimation 0.1s linear infinite;
+    transition: none;
+}
+
+@keyframes rouletteAnimation {
+    from{
+        transform: translateY(0)
+    }
+    
+    to {
+        transform: translateY(-60px);
+    }
+}
+
+.modal-content {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+
+.roulette-button {
+    white-space: nowrap !important;
+    min-width: fit-content;
+    font-size: 14px !important;
+    line-height: 1.2;
+}
